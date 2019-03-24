@@ -5,3 +5,5 @@ node('maven'){
     }
     stage('test'){
         sh "mvnHome/bin/mvn clean test compile"
+    }
+}
