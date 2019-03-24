@@ -3,7 +3,10 @@ node('maven'){
     stage('checkout'){
     git credentialsId: 'githubaccount', url: 'https://github.com/deepaklama0815/samplejenkinsrepo.git'
     }
-    stage('test'){
-        sh "${mvnHome}/bin/mvn clean test"
+    stage('build'){
+        sh "mvnHome/bin/mvn clean test"
+    }
+    stage('package'){
+        sh "mvnhome/bin/mvn clean package"
     }
 }
