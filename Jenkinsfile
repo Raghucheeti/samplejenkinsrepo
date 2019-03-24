@@ -6,6 +6,7 @@ node('maven'){
     stage('test'){
         sh "${mvnHome}/bin/mvn clean test"
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'target/surefire-reports/*'
     }
     stage('package'){
         sh "${mvnHome}/bin/mvn clean package -Dskiptest"
