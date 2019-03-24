@@ -5,10 +5,11 @@ node('maven'){
     }
     stage('test'){
         sh "${mvnHome}/bin/mvn clean test surefire-reports:report-only"
-        junit allowEmptyResults: true, testResults: 'target/*.jar'
+        junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
 
     }
     stage('package'){
         sh "${mvnHome}/bin/mvn clean package -Dskiptest"
     }
 }
+
