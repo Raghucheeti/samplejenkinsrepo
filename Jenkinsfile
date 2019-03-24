@@ -4,9 +4,9 @@ node('maven'){
     git credentialsId: 'githubaccount', url: 'https://github.com/deepaklama0815/samplejenkinsrepo.git'
     }
     stage('build'){
-        sh "mvnHome/bin/mvn clean test"
+        sh "${mvnHome}/bin/mvn clean test"
     }
     stage('package'){
-        sh "mvnHome/bin/mvn clean package"
+        sh "${mvnHome}/bin/mvn clean package"
     }
 }
