@@ -7,6 +7,6 @@ node('maven'){
         sh "mvnHome/bin/mvn clean test"
     }
     stage('package'){
-        sh "mvnhome/bin/mvn clean package"
+        sh "mvnHome/bin/mvn clean package"
     }
 }
