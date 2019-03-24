@@ -4,7 +4,7 @@ node('maven'){
     git credentialsId: 'githubaccount', url: 'https://github.com/deepaklama0815/samplejenkinsrepo.git'
     }
     stage('test'){
-        sh "${mvnHome}/bin/mvn clean test surefire-reports:report-only"
+        sh "${mvnHome}/bin/mvn clean test surefire-report:report-only"
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
         archiveArtifacts allowEmptyArchive: true, artifacts: 'target/surefire-reports/*'
     }
