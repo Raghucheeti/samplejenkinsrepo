@@ -1,6 +1,6 @@
 node('maven'){
     def mvnHome = tool name: 'maven360', type: 'maven'
-    stage('checkout'){
+    stage('checkout1'){
     git credentialsId: 'githubaccount', url: 'https://github.com/deepaklama0815/samplejenkinsrepo.git'
     }
     stage('test'){
