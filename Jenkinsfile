@@ -12,6 +12,8 @@ node('maven'){
     stage('package'){
         sh "${mvnHome}/bin/mvn clean package -Dskiptest"
     }
+    stage('email'){
+        sh "mutt -s "The job is completed" deepaklama0815@gmail.com"
     stage('deployment'){
    //     sh "scp -o StrictHostKeyCkecking=no target/jenkins-file-name.jar deployusr@172.31.91.180:/home/ec2-user"
     }
