@@ -13,6 +13,6 @@ node('maven'){
         sh "${mvnHome}/bin/mvn clean package -Dskiptest"
     }
     stage('deployment'){
-        //sh "scp -o StrictHostKeyCkecking=no target/jenkins-file-name.jar deployusr@agent-private-ip:/opt/tomcat/webapp/"
+        sh "scp -o StrictHostKeyCkecking=no target/jenkins-file-name.jar deployusr@172.31.91.180:/opt/tomcat/webapp/"
     }
 }
