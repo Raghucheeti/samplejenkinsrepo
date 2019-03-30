@@ -12,10 +12,13 @@ node('maven'){
     stage('package'){
         sh "${mvnHome}/bin/mvn clean package -Dskiptest"
     }
-    stage('email'){
-        sh "mutt -s "The job is completed" deepaklama0815@gmail.com"
-    }
+    //stage('email'){
+    //   sh "mutt -s "The job is completed" deepaklama0815@gmail.com"
+    //}
     stage('deployment'){
-   //     sh "scp -o StrictHostKeyCkecking=no target/jenkins-file-name.jar deployusr@172.31.91.180:/home/ec2-user"
+        sshagent(['demo-ssh-key']) {
+        sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@52.91.69.147:/home/deployuser/"
+      // sh "scp -o StrictHostKeyChecnking=no my-app.jar deployuser@52.91.69.147:~/deployuser/"
+       }
     }
 }
