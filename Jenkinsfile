@@ -10,7 +10,7 @@ node('maven'){
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'HTMLReport', reportTitles: ''])
     }
     stage('package'){
-        sh "${mvnHome}/bin/mvn clean package -Dskiptest"
+        sh "${mvnHome}/bin/mvn package -Dskiptest"
     }
     //stage('email'){
     //   sh "mutt -s "The job is completed" deepaklama0815@gmail.com"
