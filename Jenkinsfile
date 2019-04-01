@@ -10,15 +10,23 @@ node('maven'){
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'HTMLReport', reportTitles: ''])
     }
     stage('package'){
-        sh "${mvnHome}/bin/mvn package -Dskiptest"
+        sh "${mvnHome}/bin/mvn clean package -Dskiptest"
     }
+    timeout(time: 30, unit: 'MINUTES') {
+     input message: 'Do you want to Deploy?', ok: 'Deploy'
+     sh "mutt -s 'The job is completed' deepaklama0815@gmail.com"
+     }
+    // stage('backup JAR file'){
+    //     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-test-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+    //     sh "aws s3 cp target/my-app-1-RELEASE.jar s3://test-only-123/"
+    //     }
+    // }
     //stage('email'){
     //   sh "mutt -s "The job is completed" deepaklama0815@gmail.com"
     //}
     stage('deployment'){
         sshagent(['demo-ssh-key']) {
-        sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@52.91.69.147:/home/deployuser/"
-      // sh "scp -o StrictHostKeyChecnking=no my-app.jar deployuser@52.91.69.147:~/deployuser/"
+        sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@54.196.23.241:/home/deployuser/"
        }
     }
 }
