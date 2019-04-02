@@ -23,9 +23,6 @@ node('maven'){
     //     sh "aws s3 cp target/my-app-1-RELEASE.jar s3://test-only-123/"
     //     }
     // }
-    //stage('email'){
-    //   sh "mutt -s "The job is completed" deepaklama0815@gmail.com"
-    //}
     stage('deployment'){
         sshagent(['demo-ssh-key']) {
         sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@54.196.23.241:/home/deployuser/"
