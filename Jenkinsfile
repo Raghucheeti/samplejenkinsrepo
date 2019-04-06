@@ -22,7 +22,7 @@ node('maven'){
     //     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-test-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
     //     sh "aws s3 cp target/my-app-1-RELEASE.jar s3://test-only-123/"
     //     }
-    // }
+    // } this is just a comment
     stage('deployment'){
         sshagent(['demo-ssh-key']) {
         sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@54.196.23.241:/home/deployuser/"
