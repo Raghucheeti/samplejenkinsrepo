@@ -27,8 +27,7 @@ node('maven'){
     //  sh "mutt -s 'The job is completed' sushilb126@gmail.com"
     //  }
     stage ('Sending jar file to AWS s3 bucket'){
-    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-iam-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    sh "aws s3 cp target/my-app-1-RELEASE.jar s3://cheeti/"
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws', secretKeyVariable:     sh "aws s3 cp target/my-app-1-RELEASE.jar s3://cheeti/"
     }
      stage ('Deploying package to the target machine'){
          sshagent(['ssh-agent']) {
