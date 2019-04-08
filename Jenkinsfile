@@ -7,7 +7,7 @@ node('maven'){
         sh "${mvnHome}/bin/mvn clean test surefire-report:report-only"
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
         archiveArtifacts allowEmptyArchive: true, artifacts: 'target/surefire-reports/*'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'HTMLReport', reportTitles: ''])
+        //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/', reportFiles: 'surefire-report.html', reportName: 'HTMLReport', reportTitles: ''])
     }
     stage('package'){
         sh "${mvnHome}/bin/mvn clean package -Dskiptest"
