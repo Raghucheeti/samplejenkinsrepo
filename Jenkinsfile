@@ -28,4 +28,4 @@ node('maven'){
         //sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@54.196.23.241:/home/deployuser/"
       // }
     }
-}
+
