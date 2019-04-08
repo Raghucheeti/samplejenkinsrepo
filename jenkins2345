@@ -34,9 +34,9 @@ node('maven'){
          sshagent(['ssh-agent']) {
      sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar ec2-user@34.203.190.72:/home/ec2-user"
  }
-    stage ('deploy to target'){
-    sshagent(['final-one']){
-    sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@3.86.142.65:/home/deployuser"
+    //stage ('deploy to target'){
+    //sshagent(['final-one']){
+    //sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@3.86.142.65:/home/deployuser"
     
 }
 }
