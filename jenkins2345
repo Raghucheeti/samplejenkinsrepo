@@ -26,10 +26,10 @@ node('maven'){
     //  input message: 'Do you want to Deploy?', ok: 'Deploy'
     //  sh "mutt -s 'The job is completed' sushilb126@gmail.com"
     //  }
-    // stage ('Sending jar file to AWS s3 bucket'){
-    // withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-iam-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    // sh "aws s3 cp target/my-app-1-RELEASE.jar s3://sushil-bh/"
-    // }
+    stage ('Sending jar file to AWS s3 bucket'){
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-iam-key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+    sh "aws s3 cp target/my-app-1-RELEASE.jar s3://cheeti/"
+    }
      stage ('Deploying package to the target machine'){
          sshagent(['ssh-agent']) {
      sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar ec2-user@34.203.190.72:/home/ec2-user"
@@ -38,5 +38,6 @@ node('maven'){
     //sshagent(['final-one']){
     //sh "scp -o StrictHostKeyChecking=no target/my-app-1-RELEASE.jar deployuser@3.86.142.65:/home/deployuser"
     
+}
 }
 }
